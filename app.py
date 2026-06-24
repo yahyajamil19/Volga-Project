@@ -1,18 +1,19 @@
 from fastapi import FastAPI, UploadFile, File
-from transcriber import transcribe_audio
 import shutil
 import os
 
-app = FastAPI(title="Speech Transcription Pipeline")
+from azure_speech import transcribe_audio
 
-UPLOAD_DIR = "uploads"
+app = FastAPI()
 
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+UPLOAD_FOLDER = "uploads"
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
+async def upload_audio(file: UploadFile = File(...)):
 
-    filepath = os.path.join(UPLOAD_DIR, file.filename)
+    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
 
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
