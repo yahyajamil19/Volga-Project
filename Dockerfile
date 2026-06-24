@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt-get update
-
-RUN apt-get install ffmpeg -y
+RUN apt-get update && apt-get install -y ffmpeg
 
 RUN pip install -r requirements.txt
 
