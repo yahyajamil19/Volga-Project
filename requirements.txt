@@ -1,7 +1,6 @@
 fastapi
 uvicorn
-openai-whisper
-torch
-ffmpeg-python
-pydub
+azure-cognitiveservices-speech
 python-multipart
+pydub
+ffmpeg-python
